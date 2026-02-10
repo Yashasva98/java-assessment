@@ -32,6 +32,12 @@ public class ItemController {
     public ResponseEntity<Item> getItem(@PathVariable String id) {
         Optional<Item> item = itemService.getItem(id);
         return item.map(ResponseEntity::ok)
-                   .orElseGet(() -> ResponseEntity.notFound().build());
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // GET / - Root endpoint (Welcome message)
+    @GetMapping("/")
+    public String home() {
+        return "Welcome to the Java Assessment API! Use POST /items to add items and GET /items to see them.";
     }
 }
